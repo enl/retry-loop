@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Retry;
+namespace Enl\Retry;
 
 /**
  * This exception is thrown when RetryLoop exceeds retry quota

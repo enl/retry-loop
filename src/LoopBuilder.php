@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Retry;
+namespace Enl\Retry;
 
 /**
  * Class LoopBuilder
@@ -17,7 +17,7 @@ class LoopBuilder
     /**
      * @var string[]
      */
-    private $giveupExceptions = [];
+    private $giveUpExceptions = [];
 
     /**
      * @var callable
@@ -33,7 +33,7 @@ class LoopBuilder
     public function giveUpAt($classNames): LoopBuilder
     {
         foreach ((array)$classNames as $className) {
-            $this->giveupExceptions[] = $className;
+            $this->giveUpExceptions[] = $className;
         }
 
         return $this;
@@ -68,7 +68,7 @@ class LoopBuilder
      */
     public function get(): RetryLoop
     {
-        return new RetryLoop($this->retries, $this->giveupExceptions, $this->beforeRetry);
+        return new RetryLoop($this->retries, $this->giveUpExceptions, $this->beforeRetry);
     }
 
     /**
@@ -78,7 +78,7 @@ class LoopBuilder
      *
      * @param callable $worker
      * @return mixed
-     * @throws \Retry\LoopFailed
+     * @throws LoopFailed
      */
     public function run(callable $worker)
     {
